@@ -101,12 +101,12 @@ fun UniverseBibleScreen(viewModel: UniversesViewModel) {
             }
             composable(UNIVERSE, arguments = listOf(navArgument("id") { type = NavType.StringType })) { detailEntry ->
                 val id = detailEntry.arguments?.getString("id")
-                UniverseDetailScreen(
-                    state = state,
-                    id = id,
-                    onEdit = { dialog = UniverseDialog.Edit },
-                    onDelete = { dialog = UniverseDialog.Delete },
-                    onRetry = viewModel::reload,
+                val universe = (state as? UniversesState.Ready)?.universes?.find { it.id == id }
+                if (universe != null) com.lucafilippi.universebible.ui.studio.StudioWorkspace(
+                    universe = universe,
+                    editUniverse = { dialog = UniverseDialog.Edit },
+                    deleteUniverse = { dialog = UniverseDialog.Delete },
+                    switchUniverse = { navController.popBackStack() },
                 )
             }
         }
@@ -120,8 +120,8 @@ fun UniverseBibleScreen(viewModel: UniversesViewModel) {
                     busy = mutation == UniverseMutation.Saving,
                     failed = mutation == UniverseMutation.Failed,
                     onDismiss = ::dismissDialog,
-                    onSave = { name, description, studio ->
-                        viewModel.save(selected?.id, name, description, studio)
+                    onSave = { name, description, studio, cover ->
+                        viewModel.save(selected?.id, name, description, studio, cover)
                     },
                 )
             }

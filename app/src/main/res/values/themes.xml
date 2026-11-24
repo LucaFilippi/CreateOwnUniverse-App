@@ -1,0 +1,7 @@
+<resources>
+    <style name="UniverseLaunch" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#0B0D13</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/universe_mark</item>
+        <item name="postSplashScreenTheme">@android:style/Theme.Material.NoActionBar</item>
+    </style>
+</resources>

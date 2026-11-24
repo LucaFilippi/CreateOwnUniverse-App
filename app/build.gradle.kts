@@ -6,7 +6,18 @@ plugins {
 }
 
 android {
+    bundle.language.enableSplit = false
     namespace = "com.lucafilippi.universebible"
+    val releaseStore = providers.environmentVariable("UNIVERSE_STORE_FILE").orNull
+    if (releaseStore != null) {
+        signingConfigs.create("distribution") {
+            storeFile = file(releaseStore)
+            storePassword = providers.environmentVariable("UNIVERSE_STORE_PASSWORD").get()
+            keyAlias = providers.environmentVariable("UNIVERSE_KEY_ALIAS").get()
+            keyPassword = providers.environmentVariable("UNIVERSE_KEY_PASSWORD").get()
+        }
+        buildTypes.getByName("release").signingConfig = signingConfigs.getByName("distribution")
+    }
     compileSdk = 37
 
     defaultConfig {
@@ -33,6 +44,9 @@ room {
 }
 
 dependencies {
+    implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation("androidx.datastore:datastore-preferences:1.1.7")
     implementation(platform("androidx.compose:compose-bom:2026.02.01"))
     implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.compose.material3:material3")

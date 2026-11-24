@@ -1,6 +1,7 @@
 package com.lucafilippi.universebible
 
 import android.os.Bundle
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
@@ -13,6 +14,10 @@ import com.lucafilippi.universebible.ui.theme.UniverseBibleTheme
 import com.lucafilippi.universebible.ui.viewmodel.UniversesViewModel
 
 class MainActivity : ComponentActivity() {
+    override fun attachBaseContext(base: android.content.Context) {
+        super.attachBaseContext(com.lucafilippi.universebible.ui.studio.localizedContext(base))
+    }
+
     private val universesViewModel by viewModels<UniversesViewModel> {
         viewModelFactory {
             initializer { UniversesViewModel((application as UniverseBibleApplication).universeRepository) }
@@ -20,6 +25,7 @@ class MainActivity : ComponentActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(android.graphics.Color.TRANSPARENT),

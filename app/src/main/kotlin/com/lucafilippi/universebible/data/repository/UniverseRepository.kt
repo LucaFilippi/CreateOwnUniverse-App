@@ -11,7 +11,7 @@ class UniverseRepository(private val dao: UniverseDao) {
     fun observeUniverses(): Flow<List<Universe>> =
         dao.observeAll().map { entities -> entities.map { it.toUniverse() } }
 
-    suspend fun create(name: String, description: String, studioName: String): String {
+    suspend fun create(name: String, description: String, studioName: String, cover: String? = null): String {
         val trimmedName = name.trim()
         require(trimmedName.isNotEmpty()) { "Universe name is required." }
         val id = UUID.randomUUID().toString()
@@ -22,7 +22,7 @@ class UniverseRepository(private val dao: UniverseDao) {
                 name = trimmedName,
                 description = description.trim(),
                 studioName = studioName.trim(),
-                coverImagePath = null,
+                coverImagePath = cover,
                 createdAt = now,
                 updatedAt = now,
             ),
@@ -30,11 +30,11 @@ class UniverseRepository(private val dao: UniverseDao) {
         return id
     }
 
-    suspend fun edit(id: String, name: String, description: String, studioName: String) {
+    suspend fun edit(id: String, name: String, description: String, studioName: String, cover: String? = null) {
         val trimmedName = name.trim()
         require(trimmedName.isNotEmpty()) { "Universe name is required." }
         check(
-            dao.update(id, trimmedName, description.trim(), studioName.trim(), System.currentTimeMillis()) == 1,
+            dao.update(id, trimmedName, description.trim(), studioName.trim(), cover, System.currentTimeMillis()) == 1,
         ) { "Universe no longer exists." }
     }
 

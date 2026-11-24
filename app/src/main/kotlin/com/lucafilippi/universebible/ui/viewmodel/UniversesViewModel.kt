@@ -42,12 +42,12 @@ class UniversesViewModel(private val repository: UniverseRepository) : ViewModel
         }
     }
 
-    fun save(id: String?, name: String, description: String, studioName: String) {
+    fun save(id: String?, name: String, description: String, studioName: String, cover: String?) {
         mutate(UniverseMutation.Saving, UniverseMutation.Saved) {
             if (id == null) {
-                repository.create(name, description, studioName)
+                repository.create(name, description, studioName, cover)
             } else {
-                repository.edit(id, name, description, studioName)
+                repository.edit(id, name, description, studioName, cover)
             }
         }
     }

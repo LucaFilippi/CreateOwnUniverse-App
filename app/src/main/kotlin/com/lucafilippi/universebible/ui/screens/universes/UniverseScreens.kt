@@ -1,6 +1,11 @@
 package com.lucafilippi.universebible.ui.screens.universes
 
+import com.lucafilippi.universebible.ui.studio.joinToStringLocalized
 import android.text.format.DateUtils
+import androidx.compose.foundation.layout.height
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -61,7 +66,11 @@ fun UniverseListScreen(
             }
             items(state.universes, key = { it.id }) { universe ->
                 Card(onClick = { onOpen(universe.id) }, modifier = Modifier.fillMaxWidth()) {
+                    com.lucafilippi.universebible.ui.studio.Artwork(universe.coverImagePath, Modifier.fillMaxWidth().height(110.dp))
                     UniverseBanner(universe, expanded = false)
+                    val app = LocalContext.current.applicationContext as com.lucafilippi.universebible.UniverseBibleApplication
+                    val counts by remember(universe.id) { app.database.studioDao().counts(universe.id) }.collectAsStateWithLifecycle(initialValue = null)
+                    counts?.let { Text(listOf("Projects" to it.projects, "Characters" to it.characters, "Phases" to it.phases).joinToStringLocalized(), Modifier.padding(horizontal = 20.dp)) }
                     Text(
                         text = stringResource(R.string.last_updated, formattedDate(universe.updatedAt)),
                         style = MaterialTheme.typography.labelMedium,

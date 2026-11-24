@@ -27,8 +27,9 @@ fun UniverseEditorDialog(
     busy: Boolean,
     failed: Boolean,
     onDismiss: () -> Unit,
-    onSave: (name: String, description: String, studio: String) -> Unit,
+    onSave: (name: String, description: String, studio: String, cover: String?) -> Unit,
 ) {
+    var cover by rememberSaveable(initial?.id) { mutableStateOf(initial?.coverImagePath.orEmpty()) }
     var name by rememberSaveable(initial?.id) { mutableStateOf(initial?.name.orEmpty()) }
     var studio by rememberSaveable(initial?.id) { mutableStateOf(initial?.studioName.orEmpty()) }
     var description by rememberSaveable(initial?.id) { mutableStateOf(initial?.description.orEmpty()) }
@@ -38,7 +39,7 @@ fun UniverseEditorDialog(
 
     fun requestDismiss() {
         if (busy) return
-        val hasChanges = name != initial?.name.orEmpty() ||
+        val hasChanges = cover != initial?.coverImagePath.orEmpty() || name != initial?.name.orEmpty() ||
             studio != initial?.studioName.orEmpty() || description != initial?.description.orEmpty()
         if (hasChanges) confirmDiscard = true else onDismiss()
     }
@@ -71,6 +72,7 @@ fun UniverseEditorDialog(
                     enabled = !busy,
                     modifier = Modifier.fillMaxWidth(),
                 )
+                com.lucafilippi.universebible.ui.studio.ImageField(cover) { cover = it }
                 OutlinedTextField(
                     value = description,
                     onValueChange = { description = it },
@@ -89,7 +91,7 @@ fun UniverseEditorDialog(
                 enabled = !busy,
                 onClick = {
                     submitted = true
-                    if (name.isNotBlank()) onSave(name, description, studio)
+                    if (name.isNotBlank()) onSave(name, description, studio, cover.ifBlank { null })
                 },
             ) {
                 Text(stringResource(if (busy) R.string.saving else R.string.save))

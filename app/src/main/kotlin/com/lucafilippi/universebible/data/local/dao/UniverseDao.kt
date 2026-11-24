@@ -17,7 +17,7 @@ interface UniverseDao {
     @Query(
         """
         UPDATE universes
-        SET name = :name, description = :description, studioName = :studioName, updatedAt = :updatedAt
+        SET name = :name, description = :description, studioName = :studioName, coverImagePath = :cover, updatedAt = :updatedAt
         WHERE id = :id
         """,
     )
@@ -26,6 +26,7 @@ interface UniverseDao {
         name: String,
         description: String,
         studioName: String,
+        cover: String?,
         updatedAt: Long,
     ): Int
 
