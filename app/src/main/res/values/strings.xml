@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">UniverseBible</string>
+    <string name="back">Back</string>
+    <string name="universes_title">Your universes</string>
+    <string name="new_universe">New universe</string>
+    <string name="universes_empty">Create a universe to start planning your stories.</string>
+    <string name="last_updated">Last edited %1$s</string>
+    <string name="universe_missing">This universe could not be found.</string>
+    <string name="universes_load_failed">Could not load your universes.</string>
+    <string name="retry">Try again</string>
+    <string name="edit_universe">Edit universe</string>
+    <string name="delete_universe">Delete universe</string>
+    <string name="universe_name">Universe name</string>
+    <string name="studio_name">Studio name</string>
+    <string name="universe_description">Description</string>
+    <string name="universe_name_required">Enter a universe name.</string>
+    <string name="save">Save</string>
+    <string name="saving">Saving…</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="deleting">Deleting…</string>
+    <string name="delete_universe_message">Delete %1$s? This permanently removes the universe and any data associated with it.</string>
+    <string name="universe_saved">Universe saved</string>
+    <string name="universe_deleted">Universe deleted</string>
+    <string name="universe_save_failed">Could not save the universe. Try again.</string>
+    <string name="universe_delete_failed">Could not delete the universe. Try again.</string>
+    <string name="discard_changes">Discard changes?</string>
+    <string name="discard_changes_message">Your edits will be lost.</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">Keep editing</string>
 </resources>

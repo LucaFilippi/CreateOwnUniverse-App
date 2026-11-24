@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back">Voltar</string>
+    <string name="universes_title">Seus universos</string>
+    <string name="new_universe">Novo universo</string>
+    <string name="universes_empty">Crie um universo para começar a planejar suas histórias.</string>
+    <string name="last_updated">Última edição em %1$s</string>
+    <string name="universe_missing">Este universo não foi encontrado.</string>
+    <string name="universes_load_failed">Não foi possível carregar seus universos.</string>
+    <string name="retry">Tentar novamente</string>
+    <string name="edit_universe">Editar universo</string>
+    <string name="delete_universe">Excluir universo</string>
+    <string name="universe_name">Nome do universo</string>
+    <string name="studio_name">Nome do estúdio</string>
+    <string name="universe_description">Descrição</string>
+    <string name="universe_name_required">Digite um nome para o universo.</string>
+    <string name="save">Salvar</string>
+    <string name="saving">Salvando…</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete">Excluir</string>
+    <string name="deleting">Excluindo…</string>
+    <string name="delete_universe_message">Excluir %1$s? Isso remove permanentemente o universo e todos os dados associados a ele.</string>
+    <string name="universe_saved">Universo salvo</string>
+    <string name="universe_deleted">Universo excluído</string>
+    <string name="universe_save_failed">Não foi possível salvar o universo. Tente novamente.</string>
+    <string name="universe_delete_failed">Não foi possível excluir o universo. Tente novamente.</string>
+    <string name="discard_changes">Descartar alterações?</string>
+    <string name="discard_changes_message">Suas alterações serão perdidas.</string>
+    <string name="discard">Descartar</string>
+    <string name="keep_editing">Continuar editando</string>
+</resources>
