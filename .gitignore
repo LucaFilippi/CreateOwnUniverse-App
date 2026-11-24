@@ -1,0 +1,14 @@
+.gradle/
+.kotlin/
+.idea/
+*.iml
+local.properties
+**/build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.jks
+*.keystore
+keystore.properties
+.DS_Store
+Thumbs.db
